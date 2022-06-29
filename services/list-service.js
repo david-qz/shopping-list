@@ -15,6 +15,20 @@ export async function getList() {
     return data;
 }
 
+export async function createLineItem(item) {
+    const { data, error } = await client
+        .from(TABLE)
+        .insert(item)
+        .single();
+
+    if (error) {
+        logError('createLineItem()', error);
+        return null;
+    }
+
+    return data;
+}
+
 function logError(context, error) {
     // eslint-disable-next-line no-console
     console.log(`${context}: ${error.message}`);
