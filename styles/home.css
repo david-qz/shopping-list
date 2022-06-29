@@ -1,0 +1,39 @@
+main {
+    padding: 20px;
+}
+
+#app-container {
+    max-width: 350px;
+    margin: auto;
+}
+
+#add-form {
+    width: min-content;
+    margin: auto;
+}
+
+#add-form > * {
+    display: block;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+
+#add-form > *:last-child {
+    float: right;
+    margin-bottom: 0;
+}
+
+#add-form input {
+    width: 175px;
+    padding: 4px;
+}
+
+#add-form button {
+    padding: 4px;
+}
+
+#list {
+    margin-top: 50px;
+    clear: both;
+    text-align: center;
+}
