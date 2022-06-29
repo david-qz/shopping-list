@@ -26,9 +26,16 @@
 
     <main>
         <section id="app-container">
-            <form>
-                <input name="item">
-                <input name="quantity" type="number" min="1">
+            <form id="add-form">
+                <label>
+                    Item
+                    <input name="item" placeholder="Item">
+                </label>
+                <label>
+                    Quantity
+                    <input name="quantity" type="number" min="1" value="1">
+                </label>
+                <button>Add</button>
             </form>
             <section id="list">
             </section>
