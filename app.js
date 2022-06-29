@@ -2,7 +2,9 @@ import { getUser, signOut } from './services/auth-service.js';
 import { getList } from './services/list-service.js';
 
 import { protectPage } from './utils.js';
+
 import createUser from './components/User.js';
+import createList from './components/List.js';
 
 // State
 let user = null;
@@ -28,9 +30,13 @@ const User = createUser(
     { handleSignOut }
 );
 
+const List = createList(
+    document.querySelector('#list')
+);
+
 function display() {
     User({ user });
-
+    List({ list });
 }
 
 handlePageLoad();
