@@ -61,5 +61,5 @@ export async function clearList() {
 
 function logError(context, error) {
     // eslint-disable-next-line no-console
-    console.log(`${context}: ${error.message}`);
+    console.error(`${context}: ${error.message}`);
 }
