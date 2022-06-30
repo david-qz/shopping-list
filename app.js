@@ -15,7 +15,7 @@ let list = [];
 // Action Handlers
 async function handlePageLoad() {
     user = getUser();
-    protectPage(user);
+    if (protectPage(user)) return;
 
     list = await getList() ?? [];
 
