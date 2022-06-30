@@ -1,24 +1,35 @@
 export default function createList(root, { handleBoughtItem }) {
+    const ul = document.createElement('ul');
+    root.append(ul);
+
     return ({ list }) => {
-        root.innerHTML = '';
+        ul.innerHTML = '';
 
         for (const lineItem of list) {
-            root.append(createListItem(lineItem, handleBoughtItem));
+            ul.append(createListItem(lineItem, handleBoughtItem));
         }
     };
 }
 
 function createListItem(lineItem, handleBoughtItem) {
+    // Create DOM
+    const li = document.createElement('li');
+    li.classList.toggle('bought', lineItem.bought);
+
     const div = document.createElement('div');
+    div.classList.add('check-mark-container');
 
-    const p = document.createElement('p');
-    p.textContent = `${lineItem.quantity} ${lineItem.item}`;
-    p.classList.toggle('bought', lineItem.bought);
+    const span = document.createElement('span');
+    span.classList.add('check-mark');
+    span.textContent = '✓';
 
-    p.addEventListener('click', () => {
+    div.append(span);
+    li.append(div, `${lineItem.quantity}x ${lineItem.item}`);
+
+    // Add Event Listeners
+    div.addEventListener('click', () => {
         handleBoughtItem(lineItem);
     });
 
-    div.append(p);
-    return div;
+    return li;
 }
