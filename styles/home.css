@@ -70,6 +70,10 @@ main {
     padding: 8px;
 }
 
+#list li span {
+    cursor: pointer;
+}
+
 .check-mark-container {
     display: inline-block;
     width: calc(var(--list-item-height) - 2*var(--list-item-padding));
@@ -77,6 +81,7 @@ main {
     border: 1px solid rgb(95, 95, 95);
     border-radius: 50%;
     margin-right: 15px;
+    cursor: pointer;
 }
 
 .check-mark {
