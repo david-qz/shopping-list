@@ -1,5 +1,5 @@
 import { getUser, signOut } from './services/auth-service.js';
-import { getList, createLineItem } from './services/list-service.js';
+import { getList, createLineItem, updateLineItem } from './services/list-service.js';
 
 import { protectPage } from './utils.js';
 
@@ -25,11 +25,26 @@ async function handleSignOut() {
     signOut();
 }
 
-async function handleAddLineItem(item) {
-    const newLineItem = await createLineItem(item);
+async function handleAddLineItem(lineItem) {
+    const newLineItem = await createLineItem(lineItem);
     if (!newLineItem) return;
 
     list.push(newLineItem);
+    display();
+}
+
+async function handleBoughtItem(lineItem) {
+    const index = list.findIndex(val => val.id === lineItem.id);
+    if (index < 0) return;
+
+    const newLineItem = await updateLineItem({
+        id: lineItem.id,
+        bought: !lineItem.bought,
+    });
+    if (!newLineItem) return;
+
+    list[index] = newLineItem;
+
     display();
 }
 
@@ -45,7 +60,8 @@ const AddForm = createAddForm(
 );
 
 const List = createList(
-    document.querySelector('#list')
+    document.querySelector('#list'),
+    { handleBoughtItem }
 );
 
 function display() {

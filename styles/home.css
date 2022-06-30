@@ -37,3 +37,7 @@ main {
     clear: both;
     text-align: center;
 }
+
+.bought {
+    text-decoration: line-through;
+}
