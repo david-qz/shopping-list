@@ -5,7 +5,7 @@ export default function createAddForm(form, { handleAddLineItem }) {
         const formData = new FormData(form);
         handleAddLineItem({
             item: formData.get('item'),
-            quantity: formData.get('quantity'),
+            quantity: formData.get('quantity') || null,
         });
         form.reset();
     });

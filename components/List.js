@@ -24,7 +24,8 @@ function createListItem(lineItem, handleBoughtItem) {
     span.textContent = '✓';
 
     div.append(span);
-    li.append(div, `${lineItem.quantity}x ${lineItem.item}`);
+    const quantityString = lineItem.quantity ? `(${lineItem.quantity})` : '';
+    li.append(div, `${lineItem.item} ${quantityString}`);
 
     // Add Event Listeners
     div.addEventListener('click', () => {
