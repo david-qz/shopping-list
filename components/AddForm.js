@@ -1,4 +1,6 @@
 export default function createAddForm(form, { handleAddLineItem }) {
+    const itemInput = form.querySelector('input[name="item"]');
+
     form.addEventListener('submit', e => {
         e.preventDefault();
 
@@ -8,6 +10,7 @@ export default function createAddForm(form, { handleAddLineItem }) {
             quantity: formData.get('quantity') || null,
         });
         form.reset();
+        itemInput.focus();
     });
 
     return () => {};
