@@ -1,3 +1,8 @@
+:root {
+    --list-item-height: 40px;
+    --list-item-padding: 8px;
+}
+
 main {
     padding: 20px;
 }
@@ -6,6 +11,10 @@ main {
     max-width: 350px;
     margin: auto;
 }
+
+/*
+    REGION: Add item form
+*/
 
 #add-form {
     width: min-content;
@@ -32,12 +41,52 @@ main {
     padding: 4px;
 }
 
+/*
+    REGION: List
+*/
+
 #list {
-    margin-top: 50px;
     clear: both;
-    text-align: center;
+    margin-top: 75px;
+    min-height: var(--list-item-height);
+    background-color: rgb(250, 250, 250);
+    border: 1px solid rgb(83, 83, 83);
+}
+
+#list li {
+    height: var(--list-item-height);
+    padding: 8px;
+}
+
+.check-mark-container {
+    display: inline-block;
+    width: calc(var(--list-item-height) - 2*var(--list-item-padding));
+    height: 100%;
+    border: 1px solid rgb(95, 95, 95);
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.check-mark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+    visibility: hidden;
 }
 
 .bought {
     text-decoration: line-through;
+}
+
+.bought .check-mark {
+    visibility: visible;
+}
+
+/*
+    REGION: List
+*/
+
+#clear-button {
+    margin: 20px auto;
 }
