@@ -17,7 +17,7 @@ async function handlePageLoad() {
     user = getUser();
     protectPage(user);
 
-    list = await getList();
+    list = await getList() ?? [];
 
     display();
 }
@@ -50,7 +50,7 @@ async function handleBoughtItem(lineItem) {
 }
 
 async function handleClearList() {
-    const deletedLineItems = await clearList();
+    const deletedLineItems = await clearList() ?? [];
 
     // The database *should* delete all the items that are
     // in our list, but in case it doesn't for some, let's
