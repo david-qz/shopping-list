@@ -1,4 +1,5 @@
 import { client } from './client.js';
+import { getUser } from './auth-service.js';
 
 const TABLE = 'list';
 
@@ -39,6 +40,20 @@ export async function updateLineItem(item) {
     if (error) {
         logError('updateLineItem()', error);
         return null;
+    }
+
+    return data;
+}
+
+export async function clearList() {
+    const { data, error } = await client
+        .from(TABLE)
+        .delete()
+        .match({ user_id: getUser().id });
+
+    if (error) {
+        logError('clearList()', error);
+        return [];
     }
 
     return data;

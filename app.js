@@ -1,11 +1,12 @@
 import { getUser, signOut } from './services/auth-service.js';
-import { getList, createLineItem, updateLineItem } from './services/list-service.js';
+import { getList, createLineItem, updateLineItem, clearList } from './services/list-service.js';
 
 import { protectPage } from './utils.js';
 
 import createUser from './components/User.js';
 import createAddForm from './components/AddForm.js';
 import createList from './components/List.js';
+import createClearButton from './components/ClearButton.js';
 
 // State
 let user = null;
@@ -48,6 +49,18 @@ async function handleBoughtItem(lineItem) {
     display();
 }
 
+async function handleClearList() {
+    const deletedLineItems = await clearList();
+
+    // The database *should* delete all the items that are
+    // in our list, but in case it doesn't for some, let's
+    // try to stay in sync.
+    const deletedIds = deletedLineItems.map(val => val.id);
+    list = list.filter(val => deletedIds.includes(val));
+
+    display();
+}
+
 // Components
 const User = createUser(
     document.querySelector('#user'),
@@ -64,10 +77,16 @@ const List = createList(
     { handleBoughtItem }
 );
 
+const ClearButton = createClearButton(
+    document.querySelector('#clear-button'),
+    { handleClearList }
+);
+
 function display() {
     User({ user });
     AddForm();
     List({ list });
+    ClearButton({ listEmpty: list.length === 0 });
 }
 
 handlePageLoad();
