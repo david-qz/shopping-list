@@ -26,20 +26,25 @@
 
     <main>
         <section id="app-container">
-            <form id="add-form">
-                <label>
-                    Item
-                    <input name="item" placeholder="Item" required>
-                </label>
-                <label>
-                    Quantity
-                    <input name="quantity" type="number" min="0">
-                </label>
-                <button>Add</button>
-            </form>
-            <section id="list">
+
+            <section id="add-form-container" class="panel">
+                <form id="add-form">
+                    <label>
+                        Item
+                        <input name="item" placeholder="Item" required>
+                    </label>
+                    <label>
+                        Quantity
+                        <input name="quantity" type="number" min="0">
+                    </label>
+                    <button class="padded-button">Add</button>
+                </form>
             </section>
-            <button id="clear-button">Clear List</button>
+
+            <section id="list" class="panel">
+            </section>
+
+            <button id="clear-button" class="padded-button">Clear List</button>
         </section>
     </main>
 
