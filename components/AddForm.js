@@ -7,6 +7,7 @@ export default function createAddForm(form, { handleAddLineItem }) {
             item: formData.get('item'),
             quantity: formData.get('quantity'),
         });
+        form.reset();
     });
 
     return () => {};
