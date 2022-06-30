@@ -16,19 +16,27 @@ function createListItem(lineItem, handleBoughtItem) {
     const li = document.createElement('li');
     li.classList.toggle('bought', lineItem.bought);
 
-    const div = document.createElement('div');
-    div.classList.add('check-mark-container');
+    const checkMarkContainer = document.createElement('div');
+    checkMarkContainer.classList.add('check-mark-container');
 
-    const span = document.createElement('span');
-    span.classList.add('check-mark');
-    span.textContent = '✓';
+    const checkMarkSpan = document.createElement('span');
+    checkMarkSpan.classList.add('check-mark');
+    checkMarkSpan.textContent = '✓';
 
-    div.append(span);
+    checkMarkContainer.append(checkMarkSpan);
     const quantityString = lineItem.quantity ? `(${lineItem.quantity})` : '';
-    li.append(div, `${lineItem.item} ${quantityString}`);
+
+    const itemSpan = document.createElement('span');
+    itemSpan.textContent = `${lineItem.item} ${quantityString}`;
+
+    li.append(checkMarkContainer, itemSpan);
 
     // Add Event Listeners
-    div.addEventListener('click', () => {
+    checkMarkContainer.addEventListener('click', () => {
+        handleBoughtItem(lineItem);
+    });
+
+    itemSpan.addEventListener('click', () => {
         handleBoughtItem(lineItem);
     });
 
