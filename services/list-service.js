@@ -10,7 +10,7 @@ export async function getList() {
 
     if (error) {
         logError('getList()', error);
-        return [];
+        return null;
     }
 
     return data;
@@ -53,7 +53,7 @@ export async function clearList() {
 
     if (error) {
         logError('clearList()', error);
-        return [];
+        return null;
     }
 
     return data;
